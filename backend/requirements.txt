@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+torch
+numpy
+python-multipart
+pydantic
+pymupdf
+colpali-engine
