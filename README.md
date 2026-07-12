@@ -132,7 +132,7 @@ The UI doesn't just show the result; it proves the optimization. The dashboard f
 *   **Final Training Loss:** **0.5798**
 *   **Agreement with Heuristic Teacher (Unseen Data):** **67.17%**
 *   **Average Reduction Achieved (Unseen Data):** **46.32%**
-*   **Inference Speed:** **Single O(1) forward pass** *(No O(N²) similarity matrix required at query time)*
+*   **Inference Speed:** **Single O(1) forward pass** *(No O(N²) similarity matrix required at query time)*.
 
 **Honest Framing:** The student model's reduction numbers are currently lower than the heuristic ceiling. We explicitly disclose this rather than obscuring it. The student model's true value proposition is its uncompromised inference speed for real-time edge scenarios, trading maximum compression for computational velocity.
 
