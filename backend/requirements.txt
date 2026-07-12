@@ -1,8 +1,8 @@
 fastapi
-uvicorn[standard]
-torch
-numpy
+uvicorn
 python-multipart
 pydantic
-pymupdf
-colpali-engine
+google-generativeai
+python-dotenv
+pillow
+PyMuPDF
