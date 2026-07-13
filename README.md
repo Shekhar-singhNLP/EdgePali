@@ -13,7 +13,7 @@
 
 #### Prerequisites
 * **Docker & Docker Compose** installed on your machine.
-* **Gemini API Key** (Required for the language model backend integration).
+* **API Key** (Required for the language model backend integration).
 
 #### Local Deployment
 To run the full stack in a containerized environment, follow these steps:
@@ -24,7 +24,7 @@ To run the full stack in a containerized environment, follow these steps:
 
 2. **Configure Environment:**
    Create a `.env` file in the root directory and add your API key:
-   `GEMINI_API_KEY=your_actual_api_key_here`
+   `API_KEY=your_actual_api_key_here`
 
 3. **Launch the Containerized Environment:**
    We use Docker Compose for seamless multi-container orchestration (FastAPI backend + Next.js frontend):
