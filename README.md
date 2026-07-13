@@ -43,8 +43,8 @@ We evaluated Edge-Pali on complex technical documentation to verify VRAM efficie
 
 | Model/Paper | Input Type | VRAM Optimization | Result Preview |
 | :--- | :--- | :--- | :--- |
-| **LSTM Architecture** | 2-page Technical PDF | ~81.6% Reduction | ![LSTM Test](./test_assets/results/LSTM.png) |
-| **Transformer (Attention Is All You Need)** | 11-page Research Paper | ~80.4% Reduction | ![NIPS Test](./test_assets/results/NIPS-2K17%20Attention.png) |
+| **LSTM Architecture** | 2-page Technical PDF | ~81.6% Reduction | ![LSTM Test](./test%20assets/results/LSTM.png) |
+| **Transformer (Attention Is All You Need)** | 11-page Research Paper | ~80.4% Reduction | ![NIPS Test](./test%20assets/results/NIPS-2K17%20Attention.png) |
 
 </div>
 
