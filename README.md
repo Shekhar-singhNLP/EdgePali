@@ -1,4 +1,3 @@
-```markdown
 <div align="center">
 
 # 🗜️ Edge-Pali
@@ -19,18 +18,15 @@
 To run the full stack in a containerized environment, follow these steps:
 
 1. **Clone the repository:**
-   `git clone <your-repo-url>`
-   `cd EdgePali`
-
-2. **Configure Environment:**
+2. git clone <your-repo-url>
+cd EdgePali
+3. 2. **Configure Environment:**
    Create a `.env` file in the root directory and add your API key:
-   `API_KEY=your_actual_api_key_here`
-
-3. **Launch the Containerized Environment:**
+4. API_KEY=your_actual_api_key_here
+5. 3. **Launch the Containerized Environment:**
    We use Docker Compose for seamless multi-container orchestration (FastAPI backend + Next.js frontend):
-   `docker-compose up --build`
-
-4. **Access the Dashboard:**
+6. docker-compose up --build
+7. 4. **Access the Dashboard:**
    Open your browser and navigate to `http://localhost:3000`.
 
 ---
@@ -43,57 +39,52 @@ We evaluated Edge-Pali on complex technical documentation to verify VRAM efficie
 
 | Model/Paper | Input Type | VRAM Optimization | Result Preview |
 | :--- | :--- | :--- | :--- |
-| **LSTM Architecture** | 2-page Technical PDF | ~81.6% Reduction | ![LSTM Test](./test%20assets/results/LSTM.png) |
-| **Transformer (Attention Is All You Need)** | 11-page Research Paper | ~80.4% Reduction | ![NIPS Test](./test%20assets/results/NIPS-2K17%20Attention.png) |
+| **LSTM Architecture** | 2-page Technical PDF | ~81.6% Reduction | ![LSTM Test](./test_assets/results/LSTM.png) |
+| **Transformer (Attention Is All You Need)** | 11-page Research Paper | ~80.4% Reduction | ![NIPS Test](./test_assets/results/NIPS-2K17%20Attention.png) |
 
 </div>
 
 ---
 
 ### 🏗️ System Architecture
-
-```text
-                        ┌─────────────────────┐
-                        │   File Upload (UI)  │
-                        │   PDF / PNG / JPG   │
-                        └──────────┬──────────┘
-                                   │
-                        ┌──────────▼──────────┐
-                        │ FastAPI /process-   │
-                        │ document endpoint   │
-                        └──────────┬──────────┘
-                                   │
-                        ┌──────────▼──────────┐
-                        │ PyMuPDF (PDF→Image) │
-                        └──────────┬──────────┘
-                                   │
-                        ┌──────────▼──────────┐
-                        │ ColPali (vidore/    │
-                        │ colpali-v1.3)       │
-                        │ → [N patches, 128]  │
-                        └──────────┬──────────┘
-                                   │
-                  ┌────────────────┴────────────────┐
-                  │                                 │
-       ┌──────────▼──────────┐           ┌───────────▼───────────┐
-       │ Similarity Heuristic │          │  Trained NN Scorer    │
-       │  (cosine sim, O(N²)) │          │  (PatchImportanceScorer│
-       │  Teacher / baseline  │          │  best_scorer.pt)      │
-       └──────────┬──────────┘           └───────────┬───────────┘
-                  └────────────────┬────────────────┘
-                                   │
-                        ┌──────────▼──────────┐
-                        │  INT8 Quantization  │
-                        │  (scale + zero-point)│
-                        └──────────┬──────────┘
-                                   │
-                        ┌──────────▼──────────┐
-                        │  Next.js Dashboard  │
-                        │  Without vs With UI │
-                        └─────────────────────┘
-
-```
-
+┌─────────────────────┐
+                │   File Upload (UI)   │
+                │   PDF / PNG / JPG     │
+                └──────────┬───────────┘
+                           │
+                ┌──────────▼───────────┐
+                │  FastAPI /process-    │
+                │  document endpoint    │
+                └──────────┬───────────┘
+                           │
+                ┌──────────▼───────────┐
+                │  PyMuPDF (PDF→Image)  │
+                └──────────┬───────────┘
+                           │
+                ┌──────────▼───────────┐
+                │  ColPali (vidore/     │
+                │  colpali-v1.3)        │
+                │  → [N patches, 128]   │
+                └──────────┬───────────┘
+                           │
+          ┌────────────────┴────────────────┐
+          │                                  │
+┌──────────▼──────────┐          ┌───────────▼───────────┐
+│ Similarity Heuristic │          │  Trained NN Scorer    │
+│  (cosine sim, O(N²)) │          │  (PatchImportanceScorer│
+│  Teacher / baseline   │          │  best_scorer.pt)       │
+└──────────┬──────────┘          └───────────┬───────────┘
+└────────────────┬────────────────┘
+│
+┌──────────▼───────────┐
+│  INT8 Quantization    │
+│  (scale + zero-point) │
+└──────────┬───────────┘
+│
+┌──────────▼───────────┐
+│  Next.js Dashboard    │
+│  Without vs With UI   │
+└───────────────────────┘
 ---
 
 ### ⚙️ Technical Highlights
@@ -142,6 +133,3 @@ We evaluated Edge-Pali on complex technical documentation to verify VRAM efficie
 | Real file upload + live inference endpoint | ✅ Complete |
 | Frontend Without/With comparison UI | ✅ Complete |
 | End-to-end verified on local (9,700 images) | ✅ Complete |
-
-```
-
