@@ -45,46 +45,19 @@ We evaluated Edge-Pali on complex technical documentation to verify VRAM efficie
 </div>
 
 ---
-
 ### 🏗️ System Architecture
-┌─────────────────────┐
-                │   File Upload (UI)   │
-                │   PDF / PNG / JPG     │
-                └──────────┬───────────┘
-                           │
-                ┌──────────▼───────────┐
-                │  FastAPI /process-    │
-                │  document endpoint    │
-                └──────────┬───────────┘
-                           │
-                ┌──────────▼───────────┐
-                │  PyMuPDF (PDF→Image)  │
-                └──────────┬───────────┘
-                           │
-                ┌──────────▼───────────┐
-                │  ColPali (vidore/     │
-                │  colpali-v1.3)        │
-                │  → [N patches, 128]   │
-                └──────────┬───────────┘
-                           │
-          ┌────────────────┴────────────────┐
-          │                                  │
-┌──────────▼──────────┐          ┌───────────▼───────────┐
-│ Similarity Heuristic │          │  Trained NN Scorer    │
-│  (cosine sim, O(N²)) │          │  (PatchImportanceScorer│
-│  Teacher / baseline   │          │  best_scorer.pt)       │
-└──────────┬──────────┘          └───────────┬───────────┘
-└────────────────┬────────────────┘
-│
-┌──────────▼───────────┐
-│  INT8 Quantization    │
-│  (scale + zero-point) │
-└──────────┬───────────┘
-│
-┌──────────▼───────────┐
-│  Next.js Dashboard    │
-│  Without vs With UI   │
-└───────────────────────┘
+
+```mermaid
+graph TD
+    A[File Upload UI<br/>PDF / PNG / JPG] --> B[FastAPI /process-document endpoint]
+    B --> C[PyMuPDF: PDF to Image]
+    C --> D["ColPali (vidore/colpali-v1.3)<br/>→ N patches, 128-dim"]
+    D --> E[Similarity Heuristic<br/>cosine sim, O(N²)<br/>Teacher/baseline]
+    D --> F[Trained NN Scorer<br/>PatchImportanceScorer<br/>best_scorer.pt]
+    E --> G[INT8 Quantization<br/>scale + zero-point]
+    F --> G
+    G --> H[Next.js Dashboard<br/>Without vs With UI]
+```
 ---
 
 ### ⚙️ Technical Highlights
