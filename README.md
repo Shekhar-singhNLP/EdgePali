@@ -49,14 +49,14 @@ We evaluated Edge-Pali on complex technical documentation to verify VRAM efficie
 
 ```mermaid
 graph TD
-    A[File Upload UI<br/>PDF / PNG / JPG] --> B[FastAPI /process-document endpoint]
-    B --> C[PyMuPDF: PDF to Image]
-    C --> D["ColPali (vidore/colpali-v1.3)<br/>→ N patches, 128-dim"]
-    D --> E[Similarity Heuristic<br/>cosine sim, O(N²)<br/>Teacher/baseline]
-    D --> F[Trained NN Scorer<br/>PatchImportanceScorer<br/>best_scorer.pt]
-    E --> G[INT8 Quantization<br/>scale + zero-point]
+    A["File Upload UI<br/>PDF / PNG / JPG"] --> B["FastAPI /process-document endpoint"]
+    B --> C["PyMuPDF: PDF to Image"]
+    C --> D["ColPali vidore/colpali-v1.3<br/>N patches, 128-dim"]
+    D --> E["Similarity Heuristic<br/>cosine similarity, quadratic time<br/>Teacher / baseline"]
+    D --> F["Trained NN Scorer<br/>PatchImportanceScorer<br/>best_scorer.pt"]
+    E --> G["INT8 Quantization<br/>scale + zero-point"]
     F --> G
-    G --> H[Next.js Dashboard<br/>Without vs With UI]
+    G --> H["Next.js Dashboard<br/>Without vs With UI"]
 ```
 ---
 
