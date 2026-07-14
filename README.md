@@ -4,6 +4,16 @@
 
 ### Dynamic VRAM Optimization and Patch Pruning for Vision-Language Models on Edge Devices
 
+## The Problem
+
+Advanced Vision-Language Models (like ColPali) process documents differently than traditional OCR. Instead of just extracting text, they break a page into visual "patches" and generate a heavy mathematical vector for each one (around 1,030 vectors per page). This is brilliant for understanding complex layouts, charts, and infographics, but it creates a massive storage problem. 
+
+A document store of just 10,000 pages balloons into 10M+ vectors, requiring over 5.3GB of VRAM just for the embeddings. On edge devices, robotics platforms, or cost-constrained hardware, this makes deploying state-of-the-art visual retrieval completely impractical.
+## The solution
+**Edge-Pali solves this by acting like a smart filter.** It recognizes that not every part of a document is equally important. Blank margins, solid backgrounds, and repetitive spaces are algorithmically identified and discarded before storage. By aggressively pruning redundant patches and compressing the rest, Edge-Pali drastically shrinks the memory footprint while maintaining the layout-aware brilliance of the original model.
+
+---
+
 </div>
 
 ---
